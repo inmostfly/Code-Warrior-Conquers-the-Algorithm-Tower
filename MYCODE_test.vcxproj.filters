@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\player">
+      <UniqueIdentifier>{89b6fdb6-bc05-49b6-8c96-cd539dd0823c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\image">
+      <UniqueIdentifier>{abe32f5b-b6f0-4b0f-b068-b505b02c2d1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\image\player">
+      <UniqueIdentifier>{2bcb5d8b-0a47-4994-b854-02a18d4fb78a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\envent">
+      <UniqueIdentifier>{42a32e63-548a-4dae-8529-2c39fc719838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\text">
+      <UniqueIdentifier>{d9eb48e0-5b40-4f50-b395-4188e2493d50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\notice">
+      <UniqueIdentifier>{75adbc56-de29-49e5-af52-2e77d33bb9a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\envent\bfs">
+      <UniqueIdentifier>{c301f36d-a5df-4aa9-94ba-a40404faeacb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\map.load">
+      <UniqueIdentifier>{26154bc2-9608-4766-9fb7-c1fd519de9dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\mainloop">
+      <UniqueIdentifier>{2e3f3581-3556-405d-8294-e2585c110390}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\mapdata">
+      <UniqueIdentifier>{594ac2e2-1d31-44e4-9aa7-aee34dc10561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\button">
+      <UniqueIdentifier>{8193520e-052e-492f-b562-88510c7db040}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\dino">
+      <UniqueIdentifier>{44313f2e-6c2e-49dc-9e46-5c76f6186374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\transport">
+      <UniqueIdentifier>{dbc57738-b0b8-4c5e-9435-b4d331292fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\greedy">
+      <UniqueIdentifier>{927a25d3-2b63-4d15-966b-1e34a38914df}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="player.cpp">
+      <Filter>源文件\player</Filter>
+    </ClCompile>
+    <ClCompile Include="map.cpp">
+      <Filter>源文件\map.load</Filter>
+    </ClCompile>
+    <ClCompile Include="envent.cpp">
+      <Filter>源文件\envent</Filter>
+    </ClCompile>
+    <ClCompile Include="text_act.cpp">
+      <Filter>源文件\text</Filter>
+    </ClCompile>
+    <ClCompile Include="notice.cpp">
+      <Filter>源文件\notice</Filter>
+    </ClCompile>
+    <ClCompile Include="bfs.cpp">
+      <Filter>源文件\envent\bfs</Filter>
+    </ClCompile>
+    <ClCompile Include="Mainmaploop.cpp">
+      <Filter>源文件\mainloop</Filter>
+    </ClCompile>
+    <ClCompile Include="mapdata.h">
+      <Filter>源文件\mapdata</Filter>
+    </ClCompile>
+    <ClCompile Include="mapdata.cpp">
+      <Filter>源文件\mapdata</Filter>
+    </ClCompile>
+    <ClCompile Include="imageload.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="button.cpp">
+      <Filter>源文件\button</Filter>
+    </ClCompile>
+    <ClCompile Include="dino_game.cpp">
+      <Filter>源文件\dino</Filter>
+    </ClCompile>
+    <ClCompile Include="trans.cpp">
+      <Filter>源文件\transport</Filter>
+    </ClCompile>
+    <ClCompile Include="greedy.cpp">
+      <Filter>源文件\greedy</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="player.h">
+      <Filter>源文件\player</Filter>
+    </ClInclude>
+    <ClInclude Include="map.h">
+      <Filter>源文件\map.load</Filter>
+    </ClInclude>
+    <ClInclude Include="envent.h">
+      <Filter>源文件\envent</Filter>
+    </ClInclude>
+    <ClInclude Include="text_act.h">
+      <Filter>源文件\text</Filter>
+    </ClInclude>
+    <ClInclude Include="notice.h">
+      <Filter>源文件\notice</Filter>
+    </ClInclude>
+    <ClInclude Include="bfs.h">
+      <Filter>源文件\envent\bfs</Filter>
+    </ClInclude>
+    <ClInclude Include="Mainmaploop.h">
+      <Filter>源文件\mainloop</Filter>
+    </ClInclude>
+    <ClInclude Include="imageload.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="button.h">
+      <Filter>源文件\button</Filter>
+    </ClInclude>
+    <ClInclude Include="dino_game.h">
+      <Filter>源文件\dino</Filter>
+    </ClInclude>
+    <ClInclude Include="trans.h">
+      <Filter>源文件\transport</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="greedy.h">
+      <Filter>源文件\greedy</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="README.html">
+      <Filter>源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="MYCODE_test.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,342 @@
+<h1>代码勇者</h1>
+<h2>项目说明</h2>
+<h3>游戏背景</h3>
+<p>此项目为独立 RPG 游戏，玩家将扮演具有高超代码水平的勇者在地牢中闯关，披荆斩棘。通过获得金币购买装备，战胜魔王，最终取得勇者之剑。</p>
+<h2>项目变量声明</h2>
+<h3>地图</h3>
+<ul>
+    <li>
+        <p>
+            <strong>地面</strong>：<br>
+            <strong>0</strong> 代表正常地板，<strong>1</strong> 代表墙壁或边界。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>传送门</strong>：<br>
+            传送门有多种类型，方便区分的做法是将传送门编号以 <strong>2</strong> 开头，后续数字为具体传送门编号。例如，<strong>21</strong> 代表 BFS 第一个传送门。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>陷阱</strong>：<br>
+            陷阱是地图中的危险区域。
+        </p>
+    </li>
+</ul>
+<h4>关于 BFS 系列地图</h4>
+<ul>
+    <li>第三个地图存在无法到达问题。</li>
+</ul>
+<h2>日志</h2>
+<h3>7月份，备赛码蹄，不再频繁更新 <strong>readme</strong></h3>
+<h4>7月更新日志</h4>
+<ul>
+    <li>
+        <p>
+            <strong>奠定游戏主基调</strong><br>
+            算法学习为主，同时加以游戏的娱乐性质
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>搭建 <strong>mainloop</strong> 模块</strong><br>
+            main 中的主循环，保证游戏持续运行，退出后总能回到主界面
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>搭建 <strong>player</strong> 模块</strong>
+            player 模块极其重视游戏的扩展性，后期添加 api 均在此模块中添加
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>搭建 <strong>map</strong> 模块</strong>
+            map 模块负责地图的生成与记录，map 模块记录了早期地图的初步信息
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>搭建 <strong>textact</strong> 模块</strong>
+            textact 模块负责文字的显示与输入，练手阶段，未解决换行问题
+        </p>
+    </li>
+</ul>
+<h3>8.11 更新日志</h3>
+<h4>游戏初步框架搭建</h4>
+<ul>
+    <li>
+        <strong>模块划分</strong>：<br>
+        游戏初步划分为四个模块：<strong>player</strong>、<strong>map</strong>、<strong>mainloop</strong> 和 <strong>textact</strong>。
+    </li>
+    <li>
+        <strong>player 模块</strong>：<br>
+        此模块负责检测玩家当前状态，以及检测玩家走动，拾取金币动作，事件触发等各类功能 api，同时在里面内置放穿墙检测。
+    </li>
+    <li></li>
+</ul>
+<h3>8.12 更新日志</h3>
+<h4>游戏底层逻辑联立</h4>
+<ul>
+    <li>
+        <p>
+            <strong>player 模块</strong>：<br>
+            该模块主要负责检测玩家当前状态，控制玩家进入特定区域后触发关卡传送与状态检验。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>map 模块</strong>：<br>
+            该模块负责地图的生成与记录，并生成不同的图像以存储各个地图的具体情况。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>mainloop 模块</strong>：<br>
+            该模块保障主地图 <strong>home</strong> 的生成。无论当前状态如何，玩家都可以返回主界面重新选择关卡。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>textact 模块</strong>：<br>
+            该模块负责文字的显示与输入。
+        </p>
+    </li>
+</ul>
+<h3>8.13 更新日志</h3>
+<h4>添加 Google 断网小恐龙</h4>
+<ul>
+    <li>
+        <p>
+            <strong>物动人不动</strong>：<br>
+            空格键控制小恐龙进行跳跃，躲避过程中积累得分。
+        </p>
+    </li>
+    <li>
+        <p>添加了 Google 断网小恐龙作为游戏内置模块，待与其他模块整合。</p>
+    </li>
+    <li>
+        <p><strong>dino模块</strong></p>
+        <ul>
+            <li><strong>1</strong>：白色</li>
+            <li><strong>2</strong>：红色</li>
+            <li><strong>3</strong>：黑色</li>
+        </ul>
+    </li>
+</ul>
+<p><strong>问题</strong>：</p>
+<ul>
+    <li>Bird 的添加出现了瞬移问题。</li>
+</ul>
+<h3>8.14 更新日志</h3>
+<h4>主界面功能添加</h4>
+<ul>
+    <li>
+        <p>
+            <strong>主界面退出功能</strong>：<br>
+            添加了主界面的退出功能，并增加了事件响应。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>金币功能</strong>：<br>
+            玩家可以通过金币购买道具，同时金币也可用于记录游戏得分。
+        </p>
+    </li>
+</ul>
+<h4>代码优化</h4>
+<ul>
+    <li>由于全局变量反复出现不定时报错，已将相关功能迁移至 <strong>main</strong> 函数中。</li>
+</ul>
+<h3>8.15 更新日志</h3>
+<h4>主界面功能更新</h4>
+<ul>
+    <li>
+        <p>
+            <strong>金币管理</strong>：<br>
+            金币功能已集成至各个关卡中，玩家可以在主界面查看金币数量，每个关卡也可以获得金币。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>链表传送关卡</strong>：<br>
+            新关卡的核心是让玩家理解链表在内存中不连续存储的特性。
+        </p>
+    </li>
+    <li>
+        <p><strong>Google 断网小恐龙功能更新</strong>：</p>
+        <ul>
+            <li>添加向下的速度，增强闪避灵活性。</li>
+        </ul>
+    </li>
+    <li>
+        <p><strong>金币流畅性增强</strong>：</p>
+        <ul>
+            <li>采用 3x3 矩阵图片轮换实现金币旋转效果。</li>
+        </ul>
+    </li>
+</ul>
+<h3>8.16 更新日志</h3>
+<h4>链表传送关卡修复</h4>
+<ul>
+    <li>
+        <p>
+            <strong>传送门机制</strong>：<br>
+            修复了传送门之间的反复传送问题。问题源于矩阵和实际屏幕的 <strong>x, y</strong> 坐标不一致。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>链表关卡退出</strong>：<br>
+            完善了退出机制，玩家在退出时会回到主界面。
+        </p>
+    </li>
+</ul>
+<h3>8.19 更新日志</h3>
+<h4>添加告示板</h4>
+<ul>
+    <li>
+        <strong>告示板</strong>：<br>
+        告示板将会在玩家停留时显示，提供游戏内容的相关通知。
+    </li>
+</ul>
+<h4>Bug 修复</h4>
+<ul>
+    <li>
+        <p>
+            <strong>BFS3 地图修复</strong>：<br>
+            修复了 BFS3 地图中的不可达路径问题。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>地图载入修复</strong>：<br>
+            修复了 BFS3 地图载入失败的问题，之前因为 <strong>switch</strong> 语句缺乏 <strong>break</strong>，导致重复载入了错误的地图。
+        </p>
+    </li>
+</ul>
+<h4>玩法重大更新</h4>
+<ul>
+    <li>
+        <p>
+            <strong>输入功能</strong>：<br>
+            算法实战正式开始，输入功能即将添加。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>图形界面优化</strong>：<br>
+            游戏图形界面进行了进一步的优化。
+        </p>
+    </li>
+</ul>
+<h3>8.26 更新日志</h3>
+<h4>音乐功能添加</h4>
+<ul>
+    <li>为不同场景添加了背景音乐。音乐将在进入场景后自动播放。</li>
+</ul>
+<h4>Bug 修复</h4>
+<ul>
+    <li>
+        <p>
+            <strong>窗口指针问题</strong>：<br>
+            修复了因窗口关闭导致指针归 <strong>NULL</strong> 的问题，避免了报错。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>音乐播放优化</strong>：<br>
+            优化了音乐播放逻辑，进入场景后可以通过 <strong>close all</strong> 一次性关闭所有音乐并播放当前音乐。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>地图精细化</strong>：<br>
+            对 BFS 关卡进行重新排列。
+        </p>
+    </li>
+</ul>
+<h3>8.27 更新日志</h3>
+<h4>优化告示板显示</h4>
+<ul>
+    <li>优化了告示板显示方式，添加了换行符的处理，使得告示板能够显示多行文字。</li>
+</ul>
+<h3>8.28 更新日志</h3>
+<h4>添加了README文件阅读功能，方便玩家了解游戏背景和玩法。</h4>
+<ul>
+    <li>
+        <p>
+            <strong>README 文件</strong>：<br>
+            玩家可以通过游戏内置的 README 文件了解游戏背景、玩法和更新日志。
+        </p>
+    </li>
+    <li>
+        <p>
+            <strong>bug 修复</strong>：<br>
+            修复了阅读 <strong>README</strong> 文件时可能出现的路径问题，确保文件能够正确加载和显示，以及添加确认阅读按钮保证不会一次性出现多个 <strong>README</strong>打开
+        </p>
+    </li>
+</ul>
+<h3>8.29 更新日志</h3>
+<h4>README 文件更新</h4>
+<ul>
+    <li>
+        <strong>内容添加</strong><br>
+        尝试丰富化 README 文件内容，添加了更多的游戏背景和玩法说明，以及图标展示
+    </li>
+</ul>
+<h3>8.30 更新日志</h3>
+<ul>
+    <li>
+        <strong>bug修复</strong><br>
+        修复了MessageBox函数在某些情况下无法正确显示的问题，确保玩家在游戏过程中能够顺利接收提示信息。
+    </li>
+    <li>
+        <strong>性能优化</strong><br>
+        字符串拼接方式优化，提升了游戏运行效率，修复了空白文本格的出现。
+    </li>
+</ul>
+<h3>9.1 更新日志</h3>
+<ul>
+    <li>
+        <p><strong>出门旅游</strong></p>
+    </li>
+    <li>
+        <p>旅游回来将继续持续更新README文件，添加了更多的游戏背景故事和玩法说明，提升玩家的游戏体验。</p>
+    </li>
+</ul>
+<h3>后记</h3>
+<p><strong>感谢自己两个月来长久的从零开始的不懈开发，如果您对此游戏感到满意，请阅读下文</strong></p>
+<h1><em>What is Love?</em></h1>
+<p>
+    <img src="asset/love.jpg" width="1280" height="720">
+<p>
+    <strong>Love is the silent sonnet of two souls dancing in the golden twilight of existence.</strong>
+</p>
+<p>
+    It is the unspoken promise carried by autumn leaves, the way they fall
+    —<strong>not because they must, but because the wind whispers their names.</strong>
+</p>
+<p>
+    Love is the <strong>art of seeing</strong>—not just with the eyes, but with the trembling heart.
+    It is the courage to <strong>hold another’s broken pieces</strong> and call them <strong>sacred</strong>.
+</p>
+<p>
+    It is <strong>not possession, but surrender</strong>—
+    Not a cage, but <strong>an open sky</strong> where two birds soar, tethered only by choice.
+</p>
+<p>
+    Love is the quiet <strong>"I know"</strong> when the world shouts <strong>"you don’t."</strong>
+    The way a hand finds another in darkness, <strong>not to lead, but to say, <em>"Here, I am too."</em></strong>
+</p>
+<p>
+    It is the <strong>first and last breath</strong> of every great story—
+    The <strong>why</strong> behind every <strong>"I will"</strong> and every <strong>"I still do."</strong>
+</p>
+<p>
+    In the end, love is simply this:
+    <strong>The universe, whispering to itself in the language of two hearts.</strong>
+</p>
+<p><img src="asset/disappointed.jpg" width="1280" height="720"></p>
+<p><strong>The End</strong></p>
