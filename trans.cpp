@@ -5,22 +5,23 @@
 #include "text_act.h"
 #include"mapdata.h"
 
-// ´«ËÍÃÅ½Úµã½á¹¹
+// ä¼ é€é—¨èŠ‚ç‚¹ç»“æ„
 struct PortalNode {
-    char symbol; // ×ÖÄ¸
-    int x, y;    // ×ø±ê
-    PortalNode* pair; // Åä¶Ô½Úµã
+    char symbol; // å­—æ¯
+    int x, y;    // åæ ‡
+    PortalNode* pair; // é…å¯¹èŠ‚ç‚¹
     PortalNode* prev;
     PortalNode* next;
+
 };
 PortalNode* portalListHead = nullptr;
 
-// Ìí¼ÓÒ»¸ö´«ËÍÃÅ½Úµã£¨×Ô¶¯Åä¶Ô£©
+// æ·»åŠ ä¸€ä¸ªä¼ é€é—¨èŠ‚ç‚¹ï¼ˆè‡ªåŠ¨é…å¯¹ï¼‰
 void addPortal(char symbol, int x, int y) {
     PortalNode* node = new PortalNode{symbol, x, y, nullptr, nullptr, portalListHead};
     if (portalListHead) portalListHead->prev = node;
     portalListHead = node;
-    // ²éÕÒÊÇ·ñÒÑÓĞÅä¶Ô
+    // æŸ¥æ‰¾æ˜¯å¦å·²æœ‰é…å¯¹
     for (PortalNode* cur = portalListHead->next; cur; cur = cur->next) {
         if (cur->symbol == symbol) {
             node->pair = cur;
@@ -30,7 +31,7 @@ void addPortal(char symbol, int x, int y) {
     }
 }
 
-// ²éÕÒÅä¶Ô´«ËÍÃÅ£¨·µ»ØÍ¬×ÖÄ¸µ«²»Í¬×ø±êµÄ½Úµã£©
+// æŸ¥æ‰¾é…å¯¹ä¼ é€é—¨ï¼ˆè¿”å›åŒå­—æ¯ä½†ä¸åŒåæ ‡çš„èŠ‚ç‚¹ï¼‰
 PortalNode* findPair(char symbol, int x, int y) {
     for (PortalNode* cur = portalListHead; cur; cur = cur->next) {
         if (cur->symbol == symbol && (cur->x != x || cur->y != y)) {
@@ -42,13 +43,13 @@ PortalNode* findPair(char symbol, int x, int y) {
 
 
 
-// ×Ô¶¯×¢²áËùÓĞ´«ËÍÃÅ
+// è‡ªåŠ¨æ³¨å†Œæ‰€æœ‰ä¼ é€é—¨
 void registerportals(int map[Map::ROW][Map::COL]) {
     /*clearPortals();*/
     for (int i = 0; i < Map::ROW; ++i)
         for (int j = 0; j < Map::COL; ++j)
             if (map[i][j] >= 65 && map[i][j] <= 90)
-                addPortal((char)map[i][j], i, j);//Ç¿ÖÆÀàĞÍ×ª»»£¬Òà¿É´æintÀàĞÍ
+                addPortal((char)map[i][j], i, j);//å¼ºåˆ¶ç±»å‹è½¬æ¢ï¼Œäº¦å¯å­˜intç±»å‹
 }
 
 int last_px=0, last_py=0;
@@ -60,37 +61,37 @@ void transport_begin(int map__transport[Map::ROW][Map::COL]) {
     mciSendString(_T("play dinomusic repeat"), NULL, 0, NULL);
     int blockSize = 40;
     Map Map_transport;
-    // »ñÈ¡ÆÁÄ»·Ö±æÂÊ
+    // è·å–å±å¹•åˆ†è¾¨ç‡
     int screenW = GetSystemMetrics(SM_CXSCREEN);
     int screenH = GetSystemMetrics(SM_CYSCREEN);
-    // ¼ÆËã¾ÓÖĞÎ»ÖÃ
+    // è®¡ç®—å±…ä¸­ä½ç½®
     int x = (screenW - col * 32) / 2;
     int y = (screenH - row * 32) / 2;
-    initgraph(col * 32, row * 32); // ´«ËÍÃÅ´°¿Ú³ß´ç
-    // »ñÈ¡´°¿Ú¾ä±ú²¢ÒÆ¶¯´°¿Ú
+    initgraph(col * 32, row * 32); // ä¼ é€é—¨çª—å£å°ºå¯¸
+    // è·å–çª—å£å¥æŸ„å¹¶ç§»åŠ¨çª—å£
     HWND hwnd = GetHWnd();
     SetWindowPos(hwnd, HWND_TOP, x, y, 0, 0, TRUE);
     BeginBatchDraw();
 
-    //playerÄ£¿é¼ÓÔØ
+    //playeræ¨¡å—åŠ è½½
     Player player;
     player.x = 50;
     player.y = 50;
     player.load();
 
-    //mapÄ£¿é¼ÓÔØ
-    Map_transport.Map_all(map__transport, 4);//³õÊ¼»¯bfsµØÍ¼
+    //mapæ¨¡å—åŠ è½½
+    Map_transport.Map_all(map__transport, 4);//åˆå§‹åŒ–bfsåœ°å›¾
     Map_transport.load(map__transport);
     Map_transport.draw(map__transport);
 
-    //text_actÄ£¿é¼ÓÔØ
-    TextHint hint_tran; // ´´½¨ÌáÊ¾¶ÔÏó
-    hint_tran.show_mind(L"»¶Ó­½øÈëÁ´±íµÄÊÀ½ç£¡", 60, (col * 32), (row * 32));//¾ÓÖĞÏÔÊ¾
+    //text_actæ¨¡å—åŠ è½½
+    TextHint hint_tran; // åˆ›å»ºæç¤ºå¯¹è±¡
+    hint_tran.show_mind(L"æ¬¢è¿è¿›å…¥é“¾è¡¨çš„ä¸–ç•Œï¼", 60, (col * 32), (row * 32));//å±…ä¸­æ˜¾ç¤º
     TextHint hint_gift;
-    hint_gift.show_mind(L"Á´±íÔÚÄÚ´æÖĞ²»Á¬Ğø£¬ÎÒÃÇÖ»ÓĞ½èÖú´«ËÍÃÅ\n¼´ÉèÖÃÖ¸ÏòĞÔÖ¸Õë£¬Ö¸ÏòËüËùÔÚµÄÎ»ÖÃ²ÅÄÜµÃÒÔ·ÃÎÊ£¡", 200, col * 32, row * 32);
+    hint_gift.show_mind(L"é“¾è¡¨åœ¨å†…å­˜ä¸­ä¸è¿ç»­ï¼Œæˆ‘ä»¬åªæœ‰å€ŸåŠ©ä¼ é€é—¨\nå³è®¾ç½®æŒ‡å‘æ€§æŒ‡é’ˆï¼ŒæŒ‡å‘å®ƒæ‰€åœ¨çš„ä½ç½®æ‰èƒ½å¾—ä»¥è®¿é—®ï¼", 200, col * 32, row * 32);
    
 
-    registerportals(map__transport);//´«ËÍÃÅ×¢²á
+    registerportals(map__transport);//ä¼ é€é—¨æ³¨å†Œ
     int count = 0;
 
     while (true) {
@@ -104,18 +105,18 @@ void transport_begin(int map__transport[Map::ROW][Map::COL]) {
         player.draw();
         hint_tran.tick();
         hint_tran.render(1);
-        // ´¦ÀíÊÂ¼ş
-        // µ½´ïÖÕµã
-        int py = (player.x + 16) / 32;//ÆÁÄ»x,¾ØÕóy,pxÊµ¼ÊÉÏ¾ÍÊÇ¾ØÕóµÄy
-		int px = (player.y + 16) / 32;//ÆÁÄ»y,¾ØÕóx,pyÊµ¼ÊÉÏ¾ÍÊÇ¾ØÕóµÄx
-        int flag = 1;//flag×÷ÎªÊÇ·ñÖØ¸´´«ËÍµÄÖØÒª±êÖ¾
+        // å¤„ç†äº‹ä»¶
+        // åˆ°è¾¾ç»ˆç‚¹
+        int py = (player.x + 16) / 32;//å±å¹•x,çŸ©é˜µy,pxå®é™…ä¸Šå°±æ˜¯çŸ©é˜µçš„y
+		int px = (player.y + 16) / 32;//å±å¹•y,çŸ©é˜µx,pyå®é™…ä¸Šå°±æ˜¯çŸ©é˜µçš„x
+        int flag = 1;//flagä½œä¸ºæ˜¯å¦é‡å¤ä¼ é€çš„é‡è¦æ ‡å¿—
         if (py == last_py &&px == last_px) {
             flag = 0;
         }
         last_px = px;
-        last_py = py;//¼ÇÂ¼ÉÏÒ»´ÎµÄÎ»ÖÃ£¬Èç¹ûÃ»ÓĞÒÆ¶¯¾Í²»Òª´«ËÍ
+        last_py = py;//è®°å½•ä¸Šä¸€æ¬¡çš„ä½ç½®ï¼Œå¦‚æœæ²¡æœ‰ç§»åŠ¨å°±ä¸è¦ä¼ é€
         if (map__transport[px][py] >= 65 && map__transport[px][py] <= 90&&flag==1) {
-             // ÕÒµ½Åä¶Ô´«ËÍÃÅ
+             // æ‰¾åˆ°é…å¯¹ä¼ é€é—¨
             
             PortalNode* pair = findPair((char)map__transport[px][py], px, py);
             if (pair) {
@@ -123,17 +124,17 @@ void transport_begin(int map__transport[Map::ROW][Map::COL]) {
 				mciSendString(_T("open ./asset/transdoor.mp3 alias transdoormusic"), NULL, 0, NULL);
                 mciSendString(_T("play transdoormusic"), NULL, 0, NULL);
                 
-                player.x = pair->y * 32; // ¸üĞÂÍæ¼ÒÎ»ÖÃ
-				player.y = pair->x * 32;//²åÈëµÄÊ±ºòÎÒÃÇÊÇ°´ÕÕx,yÀ´²åÈëµÄ£¬ËùÒÔÕâÀïÒª½»»»
-                last_px = pair->x;//Í¬Àí£¬ÎÒÃÇ²åÈëµÄÊ±ºòÊÇx,y
-				last_py = pair->y; // ¸üĞÂÉÏ´ÎÎ»ÖÃ
-                // ÏÔÊ¾ÌáÊ¾
-                hint_tran.show_mind(L"´«ËÍ³É¹¦£¡", 60, (col * 32), (row * 32));
+                player.x = pair->y * 32; // æ›´æ–°ç©å®¶ä½ç½®
+				player.y = pair->x * 32;//æ’å…¥çš„æ—¶å€™æˆ‘ä»¬æ˜¯æŒ‰ç…§x,yæ¥æ’å…¥çš„ï¼Œæ‰€ä»¥è¿™é‡Œè¦äº¤æ¢
+                last_px = pair->x;//åŒç†ï¼Œæˆ‘ä»¬æ’å…¥çš„æ—¶å€™æ˜¯x,y
+				last_py = pair->y; // æ›´æ–°ä¸Šæ¬¡ä½ç½®
+                // æ˜¾ç¤ºæç¤º
+                hint_tran.show_mind(L"ä¼ é€æˆåŠŸï¼", 60, (col * 32), (row * 32));
             } 
         }
         if (map__transport[px][py] == -2) {
-            MessageBox(GetHWnd(), L"¹§Ï²Íê³ÉÁ´±í´«ËÍ¹Ø¿¨£¬»ñµÃ½ğ±Ò½±Àø£¬¼´½«´«ËÍ»Øhome!", L"Congratulations!", MB_OK);
-            break;//ÍË³ö¸Ã¹Ø¿¨
+            MessageBox(GetHWnd(), L"æ­å–œå®Œæˆé“¾è¡¨ä¼ é€å…³å¡ï¼Œè·å¾—é‡‘å¸å¥–åŠ±ï¼Œå³å°†ä¼ é€å›home!", L"Congratulations!", MB_OK);
+            break;//é€€å‡ºè¯¥å…³å¡
         }
         if (map__transport[px][py] == -41) {
 			hint_gift.render(1);
@@ -143,9 +144,9 @@ void transport_begin(int map__transport[Map::ROW][Map::COL]) {
         wchar_t s1[32];
         swprintf(s1, 32, L"coin: %d", coin);
         outtextxy(0, 0, s1);
-        //µÈ´ıÌí¼Ó´«ËÍÃÅÊÂ¼ş
+        //ç­‰å¾…æ·»åŠ ä¼ é€é—¨äº‹ä»¶
         coin_count++;
         FlushBatchDraw();
-        Sleep(20); // ¿ØÖÆÖ¡ÂÊ 
+        Sleep(20); // æ§åˆ¶å¸§ç‡ 
     }
 }
