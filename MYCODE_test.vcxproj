@@ -130,14 +130,17 @@
     <ClCompile Include="greedy.cpp" />
     <ClCompile Include="imageload.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="manager.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="mapdata.cpp" />
     <ClCompile Include="mapdata.h" />
     <ClCompile Include="Mainmaploop.cpp" />
     <ClCompile Include="notice.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="rank.cpp" />
     <ClCompile Include="text_act.cpp" />
     <ClCompile Include="trans.cpp" />
+    <ClCompile Include="tutorial.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bfs.h" />
@@ -147,12 +150,15 @@
     <ClInclude Include="greedy.h" />
     <ClInclude Include="imageload.h" />
     <ClInclude Include="Mainmaploop.h" />
+    <ClInclude Include="manager.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="notice.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="rank.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="text_act.h" />
     <ClInclude Include="trans.h" />
+    <ClInclude Include="tutorial.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.html" />
@@ -163,6 +169,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="coin.txt" />
+    <Text Include="rank.txt" />
+    <Text Include="user.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,7 +6,7 @@
 #include "notice.h"
 #include "bfs.h"
 #include "mapdata.h"
-
+#pragma comment(lib, "winmm.lib")
 void Mainmaploop() {
     mciSendString(_T("close all"), NULL, 0, NULL);
     initmusic();

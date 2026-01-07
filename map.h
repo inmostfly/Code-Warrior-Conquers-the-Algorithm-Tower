@@ -10,6 +10,9 @@ public:
     static const int x_bfs1 = 16, y_bfs1 = 10;
     static const int x_bfs2 = 15, y_bfs2 = 11;
     static const int  x_bfs3 = 30, y_bfs3 = 19;
+    static const int x_bfs4 = 35, y_bfs4 = 11;
+    static const int x_bfs5 = 35, y_bfs5 = 21;
+	static const int x_bfs6 = 39, y_bfs6 = 25;
     static const int  x_org = 40, y_org = 19;
 	static const int x_greedy_tech = 24, y_greedy_tech = 14;
 	static const int x_greedy_normal = 24, y_greedy_normal = 14;
@@ -17,7 +20,7 @@ public:
     IMAGE floor, wall, goal,envent,exit,coin,transport,notice,trans,box,readme,fire;
 	Map(); // 构造函数
 	void Map_all(int target[ROW][COL], int type); // 初始化地图
-    void load(int map[ROW][COL]);           // 加载贴图
-    void draw(int map[ROW][COL]);           // 渲染地图
+    void load(int map[ROW][COL]); // 加载贴图
+    void draw(int map[ROW][COL]);  // 渲染地图
     bool isWalkable(int x, int y,int map[ROW][COL]); // 判定是否能走
 };

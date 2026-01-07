@@ -62,8 +62,8 @@ void runDinoGame() {
     TextHint hint_score;
     TextHint hint_speed;
     TextHint hint_begin;
-    hint_begin.show_mind(L"冒险家！尽可能取得更高的分数！", 1, 700, 200, 24);
-	hint_speed.show_mind(L"速度提升", 0,700, 200, 24);
+    hint_begin.show_mind(L"冒险家！尽可能取得更高的分数！", 1, 800, 200, 24);
+	hint_speed.show_mind(L"速度提升", 0,800, 300, 24);
     //按钮模块
     Button startbtn((800-150)/2,(300-50)/2,150, 50, L"开始游戏");
     startbtn.normalColor = RGB(100, 150, 200);
@@ -77,7 +77,7 @@ void runDinoGame() {
         }
         startbtn.draw();
         FlushBatchDraw();
-        Sleep(10);
+        Sleep(5);
     }
     loadimage(&dinoImg, L"asset/player.png", 96, 128, true);
     while (TRUE) {
@@ -99,13 +99,13 @@ void runDinoGame() {
 		setbkmode(TRANSPARENT);
         // 输入
         if ((GetAsyncKeyState(VK_SPACE) & 0x8000 || GetAsyncKeyState('W') & 0x8000) && !dino.jumping) {
-            dino.vy = jumpPower;
+            dino.vy = int(jumpPower);
             dino.jumping = true;
         }
 
         // 更新恐龙
         dino.y += dino.vy;
-        dino.vy += gravity;
+        dino.vy += int(gravity);
         if (dino.y >= groundY) {
             dino.y = groundY;
             dino.vy = 0;

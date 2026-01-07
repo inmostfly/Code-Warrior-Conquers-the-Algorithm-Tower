@@ -1,10 +1,11 @@
 #pragma once
 #include <graphics.h>
 #include "mapdata.h"
+#pragma comment(lib, "winmm.lib")
 // 恐龙结构体
 struct Dino {
     int x, y;       // 位置
-    int vy;         // 垂直速ddddddww度
+    int vy;         // 垂直速
     bool jumping;   // 是否在跳跃
     int w, h;       // 尺寸
 };

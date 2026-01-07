@@ -1,5 +1,6 @@
 #pragma once
 #include "player.h"  
+#include"tutorial.h"
 #include "easyx.h" // 添加此行以包含 EasyX 库头文件  
 #include "bfs.h" // 添加此行以包含 BFS 头文件
 #include "mapdata.h"
@@ -97,18 +98,31 @@ void Player::update(Map& map, int temp[Map::ROW][Map::COL]) {
             g_flag = true;
             closegraph(); // 关闭当前窗口
             if (temp[py][px] == 21) {
-                enterBFSWindow(map_bfs, 1, Map::x_bfs1, Map::y_bfs1); // 进入 BFS 关卡窗口
+                enterBFSWindow(currentMap, 1, Map::x_bfs1, Map::y_bfs1); // 进入 BFS 关卡窗口
                 return;
             }
             else if (temp[py][px] == 22) {
-                enterBFSWindow(map_bfs, 2, Map::x_bfs2, Map::y_bfs2);
+                enterBFSWindow(currentMap, 2, Map::x_bfs2, Map::y_bfs2);
                 return;
             }
             else if (temp[py][px] == 23) {
-                enterBFSWindow(map_bfs, 3, Map::x_bfs3, Map::y_bfs3);
+                enterBFSWindow(currentMap, 3, Map::x_bfs3, Map::y_bfs3);
                 /*coin += 30;*/
                 return;
             }
+            else if(temp[py][px]==24){
+                enterBFSWindow(currentMap, 4, Map::x_bfs4, Map::y_bfs4);
+                return;
+			}
+            else if (temp[py][px] == 25) {
+                enterBFSWindow(currentMap, 5, Map::x_bfs5, Map::y_bfs5);
+                return;
+            }
+            else if (temp[py][px] == 26) {
+                enterBFSWindow(currentMap, 6, Map::x_bfs6, Map::y_bfs6);
+                return;
+            }
+
             //return; // 事件触发后不再继续执行
         }
         if (temp[py][px] == 31) {
@@ -120,25 +134,25 @@ void Player::update(Map& map, int temp[Map::ROW][Map::COL]) {
         if (temp[py][px] == 32) {
             g_flag = true;
             MessageBox(GetHWnd(), L"你触发了一个事件：即将进入链表的世界！", L"事件触发", MB_OK);
-            transport_begin(map_bfs); // 进入传送门窗口
+            transport_begin(currentMap); // 进入传送门窗口
             return;
         }
         if(temp[py][px]==41){
             g_flag = true;
             MessageBox(GetHWnd(), L"你触发了一个事件：即将进入背包特训关卡！", L"事件触发", MB_OK);
-            greedy_begin(map_bfs,5,30,15); // 进入贪心窗口
+            greedy_begin(currentMap,8,30,15); // 进入贪心窗口
             return;
 		}
         if (temp[py][px] == 42) {
             g_flag = true;
             MessageBox(GetHWnd(), L"你触发了一个事件：即将进入不完全背包的世界！", L"事件触发", MB_OK);
-            greedy_begin(map_bfs, 6, 30, 15); // 进入贪心窗口
+            greedy_begin(currentMap, 9, 30, 15); // 进入贪心窗口
             return;
         }
         if(temp[py][px] == 43) {
             g_flag = true;
             MessageBox(GetHWnd(), L"你触发了一个事件：即将进入0-1背包的世界！", L"事件触发", MB_OK);
-            greedy_begin(map_bfs, 7, 30, 15); // 进入贪心窗口
+            greedy_begin(currentMap, 10, 30, 15); // 进入贪心窗口
             return;
 		}
         if (temp[py][px] == -1) {//游戏出口
@@ -148,7 +162,12 @@ void Player::update(Map& map, int temp[Map::ROW][Map::COL]) {
             MessageBox(GetHWnd(), msg.c_str(), L"exit", MB_OK);
             return;
         }
-
+        if (temp[py][px] == 80) {
+            g_flag = true;
+            MessageBox(GetHWnd(), L"你触发了一个事件：\n即将进行BFS DFS可视化训练！", L"事件触发", MB_OK);
+            tutorial();//进入演示模块
+            return;
+        }
         //链表模块，数字为3,触发金币拾取
         if (temp[py][px] == 3) {
             coin++;
@@ -172,7 +191,63 @@ void Player::update(Map& map, int temp[Map::ROW][Map::COL]) {
 				ShellExecuteA(NULL, "open", msg.c_str(), NULL, NULL, SW_SHOWNORMAL);
             }
         }
-  
+        if (temp[py][px] == 104) {
+            int resTem = MessageBox(GetHWnd(), L"该物品的重量为3，价值为10！", L"事件触发", MB_YESNO | MB_ICONQUESTION);
+            extern int capacity;
+            if(resTem==IDOK){
+                if (capacity >= 3) {
+                    capacity -= 3;
+                    coin += 10;
+                    temp[py][px] = 0;
+                }
+                else {
+                    MessageBox(GetHWnd(), L"背包容量不足，无法拾取该物品！", L"提示", MB_OK);
+                }
+			}
+            else {
+                
+            }
+        }
+        if (temp[py][px] == 105) {
+            int resTem=MessageBox(GetHWnd(), L"该物品的重量为5，价值为18！", L"事件触发", MB_YESNO | MB_ICONQUESTION);
+            extern int capacity;
+            if (resTem == IDOK) {
+                if(capacity>=5){
+                    capacity -= 5;
+                    coin += 18;
+                    temp[py][px] = 0;
+                }
+                else {
+                    MessageBox(GetHWnd(), L"背包容量不足，无法拾取该物品！", L"提示", MB_OK);
+				}
+                
+            }
+            else {
+
+            }
+        }
+        if (temp[py][px] == 106) {
+            int resTem = MessageBox(GetHWnd(), L"该物品的重量为8，价值为30！", L"事件触发", MB_YESNO | MB_ICONQUESTION);
+            extern int capacity;
+            if (resTem == IDOK) {
+                if (capacity >= 8) {
+                    capacity -= 8;
+                    coin += 30;
+                    temp[py][px] = 0;
+                }
+                else {
+                    MessageBox(GetHWnd(), L"背包容量不足，无法拾取该物品！", L"提示", MB_OK);
+				}
+                
+            }
+            else {
+
+            }
+        }
+        if (temp[py][px] == 72) {
+            coin -= 10;
+            MessageBox(GetHWnd(), L"小心，你的功力正在衰退！", L"提示", MB_OK);
+        }
     }
     //"C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
     //告示板模块，在这里与上方相反，只要不移动就会一直显示提示信息
@@ -196,6 +271,21 @@ void Player::update(Map& map, int temp[Map::ROW][Map::COL]) {
         notice.show_mind(L"时间有限!请尽快抵达终点!", 200, 30 * 32, 19 * 32);
         notice.render(1);
     }
+    if (temp[py][px] == -42) {//-42开始，已经被占用
+        TextHint notice;
+        notice.show_mind(L"时间有限!请尽快抵达终点!", 200, 35 * 32, 11 * 32);
+        notice.render(1);
+    }
+    if (temp[py][px] == -43) {
+        TextHint notice;
+        notice.show_mind(L"时间有限!请尽快抵达终点!", 200, 35 * 32, 21 * 32);
+        notice.render(1);
+	}
+    if (temp[py][px] == -44) {
+        TextHint notice;
+		notice.show_mind(L"时间有限!请尽快抵达终点!", 200, 39 * 32, 25 * 32);
+		notice.render(1);
+    }
     if (temp[py][px] == -35) {
         TextHint notice;
         notice.show_mind(L"前方为bfs迷宫阵列，魔王为抵御我们取得勇者之剑,设下了重重限制!\n而值得庆幸的是,我们的先遣部队已经取得迷宫地图抽象矩阵\n分别存储在bfsdata1/2/3.txt文件中,三个文件分别存储在对应传送门旁边的宝箱内", 200, Map::x_org * 32, Map::y_org * 32);
@@ -203,7 +293,7 @@ void Player::update(Map& map, int temp[Map::ROW][Map::COL]) {
     }
     if (temp[py][px] == -37) {
         TextHint notice;
-		notice.show_mind(L"前方为贪心与背包房间，不同金币有着不同的价值！\n请利用好有限的背包空间，尽可能多的囤积资源！\n最上方为特训关卡，在训练合格后你将获得真正进入宝库的资格！", 200, Map::x_org * 32, Map::y_org * 32);
+		notice.show_mind(L"前方为背包房间，不同金币有着不同的价值！\n请利用好有限的背包空间，尽可能多的囤积资源！\n最上方为特训关卡，在训练合格后你将获得真正进入宝库的资格！", 200, Map::x_org * 32, Map::y_org * 32);
         notice.render(1);
     }
     if (temp[py][px] == -38) {
@@ -221,6 +311,32 @@ void Player::update(Map& map, int temp[Map::ROW][Map::COL]) {
 		notice.show_mind(L"前方为完全背包的宝库！\n请合理利用背包资源，争取获得最高的宝物价值", 200, Map::x_org * 32, Map::y_org * 32);
         notice.render(1);
     }
+    if (temp[py][px] == -80) {
+        TextHint notice;
+		notice.show_mind(L"前方为BFS DFS算法可视化训练区！\n请做好准备，认真观摩，领悟其算法奥秘！", 200, Map::x_org * 32, Map::y_org * 32);
+		notice.render(1);
+    }
+    if (temp[py][px] == -1001) {
+        TextHint notice;
+        notice.show_mind(L"此为关卡传送门，借助它你可以传送到不同的算法关卡", 200, Map::x_org * 32, Map::y_org * 32);
+        notice.render(1);
+    }
+    if (temp[py][px] == -1002) {
+        TextHint notice;
+        notice.show_mind(L"奇遇传送门，靠近它将会发生有趣的事情!", 200, Map::x_org * 32, Map::y_org * 32);
+        notice.render(1);
+    }
+    if (temp[py][px] == -1003) {
+        TextHint notice;
+        notice.show_mind(L"这是安全出口，借助它你可以安全的返回home！", 200, Map::x_org * 32, Map::y_org * 32);
+        notice.render(1);
+    }
+    if (temp[py][px] == -72) {
+        TextHint notice;
+        notice.show_mind(L"这是魔王之息，它会偷走你的金币和算法功底！不要靠近！", 200, Map::x_org * 32, Map::y_org * 32);
+        notice.render(1);
+    }
+    
     /*if(temp[py][px]==-36){
         TextHint notice;
 		notice.show_mind(L"值得庆幸的是,我们的先遣部队已经取得迷宫地图抽象矩阵\n分别存储在bfsdata1/2/3.txt文件中,三个文件分别存储在对应传送门旁边的宝箱内", 200, Map::x_org * 32, Map::y_org * 32);

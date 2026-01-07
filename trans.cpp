@@ -79,7 +79,7 @@ void transport_begin(int map__transport[Map::ROW][Map::COL]) {
     player.load();
 
     //map模块加载
-    Map_transport.Map_all(map__transport, 4);//初始化bfs地图
+    Map_transport.Map_all(map__transport, 7);//初始化bfs地图
     Map_transport.load(map__transport);
     Map_transport.draw(map__transport);
 

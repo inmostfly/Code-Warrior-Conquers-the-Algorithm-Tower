@@ -17,10 +17,5 @@ void initmusic() {
 	mciSendString(_T("open ./asset/coin.mp3 alias coinmusic"), NULL, 0, NULL);
 	mciSendString(_T("open ./asset/transdoor.mp3 alias transdoormusic"), NULL, 0, NULL);
 }
-std::string GetAppPath() {
-	char buf[MAX_PATH];
-	GetModuleFileNameA(NULL, buf, MAX_PATH);  // 获取 exe 完整路径
-	std::string path(buf);
-	size_t pos = path.find_last_of("\\/");
-	return path.substr(0, pos); // 去掉 exe 文件名，得到目录
-}
+
+//直接调用initmusic()即可初始化音乐播放器

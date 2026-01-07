@@ -16,7 +16,7 @@ void enterBFSWindow(int map__bfs[Map::COL][Map::ROW],int type,int col,int row) {
 	//扩展性声明，在这里修改后续type就能得到不同的地图
     int choice = 0;
     initgraph(col*32, row*32); // 迷宫窗口尺寸
-
+    int blockSize = 40;
     step_max = 100;//重置最大步数限制
     Map Map_bfs;
     // 获取屏幕分辨率
@@ -83,7 +83,7 @@ void enterBFSWindow(int map__bfs[Map::COL][Map::ROW],int type,int col,int row) {
             player.draw();
 			settextcolor(WHITE);
 			wchar_t s[32];
-			swprintf(s, 32, L"Last_step: %d", step_max);
+			swprintf(s, 32, L"Remaining_step: %d", step_max);
             outtextxy(0, 0, s);
             hint_bfs.tick();
             hint_bfs.render(1);
@@ -97,18 +97,30 @@ void enterBFSWindow(int map__bfs[Map::COL][Map::ROW],int type,int col,int row) {
 			int res1=MessageBox(GetHWnd(), res, L"成功", MB_YESNO | MB_ICONQUESTION);
             {
                 
-                if (res1 == IDNO || type == 3) {
-                    MessageBox(GetHWnd(), type==3?L"恭喜你已经完全掌握了BFS迷宫要领，请点击YES返回":L"请点击YES返回home!", L"congratulations!", MB_OK);
+                if (res1 == IDNO || type == 6) {
+                    MessageBox(GetHWnd(), type==6?L"恭喜你已经完全掌握了BFS迷宫要领，请点击YES返回":L"请点击YES返回home!", L"congratulations!", MB_OK);
                     return;
                 }
                 else {
                     type++;
                     if (type == 2) {
-                        enterBFSWindow(map_bfs, type, Map::x_bfs2, Map::y_bfs2); // 进入下一个BFS关卡
+                        enterBFSWindow(currentMap, type, Map::x_bfs2, Map::y_bfs2); // 进入下一个BFS关卡
                         return;
                     }
                     else if (type == 3) {
-                        enterBFSWindow(map_bfs, type, Map::x_bfs3, Map::y_bfs3); // 进入下一个BFS关卡
+                        enterBFSWindow(currentMap, type, Map::x_bfs3, Map::y_bfs3); // 进入下一个BFS关卡
+                        return;
+                    }
+                    else if (type == 4) {
+                        enterBFSWindow(currentMap, type, Map::x_bfs4, Map::y_bfs4); // 进入下一个BFS关卡
+                        return;
+                    }
+                    else if(type == 5) {
+						enterBFSWindow(currentMap, type, Map::x_bfs5, Map::y_bfs5); // 进入下一个BFS关卡
+                        return;
+                    }
+                    else if (type == 6) {
+						enterBFSWindow(currentMap, type, Map::x_bfs6, Map::y_bfs6); // 进入下一个BFS关卡
                         return;
                     }
                 }
@@ -146,22 +158,34 @@ void enterBFSWindow(int map__bfs[Map::COL][Map::ROW],int type,int col,int row) {
             int py = (player.y + 16) / 32;
             if (map__bfs[py][px] == 9) {
 				coin += type * 10; // 根据关卡类型奖励不同的金币
-				int result = MessageBox(GetHWnd(), type!=3?L"恭喜你完成 BFS 关卡,请选择当前是否要挑战更高难度关卡？":L"恭喜你已经完全掌握了BFS迷宫要领，请点击YES返回", L"成功", MB_YESNO | MB_ICONQUESTION);
-                if (result == IDNO || type == 3) {
+				int result = MessageBox(GetHWnd(), type!=6?L"恭喜你完成 BFS 关卡,请选择当前是否要挑战更高难度关卡？":L"恭喜你已经完全掌握了BFS迷宫要领，请点击YES返回", L"成功", MB_YESNO | MB_ICONQUESTION);
+                if (result == IDNO || type == 6) {
                     MessageBox(GetHWnd(), L"恭喜你完成 BFS 关卡,获得金币奖励！即将传送回home！", L"成功", MB_OK);
 					return ; // 退出循环，返回主界面
                 }
                 else {
                     type++;
                     if(type==2){
-					enterBFSWindow(map_bfs, type, Map::x_bfs2, Map::y_bfs2); // 进入下一个BFS关卡
-                    break;
+					    enterBFSWindow(currentMap, type, Map::x_bfs2, Map::y_bfs2); // 进入下一个BFS关卡
+                        break;
                     //退出while循环
                     }
                     else if (type == 3) {
-						enterBFSWindow(map_bfs, type, Map::x_bfs3, Map::y_bfs3); // 进入下一个BFS关卡
+						enterBFSWindow(currentMap, type, Map::x_bfs3, Map::y_bfs3); // 进入下一个BFS关卡
                         break;
                         //退出while循环
+                    }
+                    else if (type == 4) {
+                        enterBFSWindow(currentMap, type, Map::x_bfs4, Map::y_bfs4); // 进入下一个BFS关卡
+                        return;
+                    }
+                    else if (type == 5) {
+                        enterBFSWindow(currentMap, type, Map::x_bfs5, Map::y_bfs5); // 进入下一个BFS关卡
+                        return;
+                    }
+                    else if (type == 6) {
+                        enterBFSWindow(currentMap, type, Map::x_bfs6, Map::y_bfs6); // 进入下一个BFS关卡
+                        return;
                     }
                 }
             } 

@@ -55,6 +55,15 @@
     <Filter Include="源文件\greedy">
       <UniqueIdentifier>{927a25d3-2b63-4d15-966b-1e34a38914df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\rank">
+      <UniqueIdentifier>{a2a8a032-140a-47b5-a64c-6a320f7d84eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Manager">
+      <UniqueIdentifier>{3091efbd-3878-4e84-9283-590ec2b62dcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\Tutorial">
+      <UniqueIdentifier>{e54f06c6-a1f7-41bd-8e0a-47d1efc2256c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -102,6 +111,15 @@
     <ClCompile Include="greedy.cpp">
       <Filter>源文件\greedy</Filter>
     </ClCompile>
+    <ClCompile Include="rank.cpp">
+      <Filter>源文件\rank</Filter>
+    </ClCompile>
+    <ClCompile Include="manager.cpp">
+      <Filter>源文件\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="tutorial.cpp">
+      <Filter>源文件\Tutorial</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="player.h">
@@ -143,6 +161,15 @@
     <ClInclude Include="greedy.h">
       <Filter>源文件\greedy</Filter>
     </ClInclude>
+    <ClInclude Include="rank.h">
+      <Filter>源文件\rank</Filter>
+    </ClInclude>
+    <ClInclude Include="manager.h">
+      <Filter>源文件\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="tutorial.h">
+      <Filter>源文件\Tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
@@ -159,5 +186,10 @@
     <Image Include="icon1.ico">
       <Filter>资源文件</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="rank.txt" />
+    <Text Include="user.txt" />
+    <Text Include="coin.txt" />
   </ItemGroup>
 </Project>
