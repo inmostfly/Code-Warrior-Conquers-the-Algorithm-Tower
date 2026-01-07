@@ -12,6 +12,7 @@ struct PortalNode {
     PortalNode* pair; // Åä¶Ô½Úµã
     PortalNode* prev;
     PortalNode* next;
+
 };
 PortalNode* portalListHead = nullptr;
 
